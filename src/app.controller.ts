@@ -1,5 +1,8 @@
 import { Controller, Get, Param } from '@nestjs/common';
 import { AppService } from './app.service';
+import { Commit } from './interfaces/commit.interface';
+import { Observable } from 'rxjs';
+import { AxiosResponse } from 'axios';
 
 @Controller()
 export class AppController {
@@ -9,7 +12,7 @@ export class AppController {
   getCommits(
     @Param('username') username: string, 
     @Param('repository') repository: string
-  ): any {  
+  ): Observable<AxiosResponse<Commit>> {  
     return this.appService.getCommits(username, repository);
   }
 }
