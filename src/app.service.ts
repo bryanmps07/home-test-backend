@@ -19,9 +19,9 @@ export class AppService {
       const response =  this.httpService.get(commitUrl)
       .pipe( 
         map((response) => {
-          return response.data.map(({commit}) => {
-            const {author, committer,message, tree} = commit;
-            return {author, committer,message,tree};
+          return response.data.map(({commit, html_url}) => {
+            const {author, committer, message, tree} = commit;
+            return {author, committer, message, tree, html_url};
           })
         })
       );
